@@ -6,6 +6,10 @@
           <option name="url" value="https://github.com/N-a-t-e-w/gittest.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Griffin-Brome/bchacks.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/Desktop/CompSci2020" />
