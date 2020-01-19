@@ -7,21 +7,17 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
-@app.route("/help")
+@app.route("/help", methods=["POST", "GET"])
 def help():
     sms.send_sms()
-    class MyForm(FlaskForm):
-        name = StringField('name', validators=[DataRequired()])
+    lon = request.args.get("lon")
+    lat = request.args.get("lat")
+    user_id = request.args.get("uid")
+    print (str(lon), str(lat), str(user_id))
+
     return "Message Sent"
 
 @app.route("/")
 def home():
     return render_template("home.html")
 
-@app.route("/upload-contact", methods=["POST"]) # take in user data via POST 
-def upload():
-    lat = request.form.get("lat")
-    lon = request.form.get("lon")
-    #date = request.form.get("date")
-    user_id = request.form.get("userid")
-    # These are gonna be sent to the DB 
