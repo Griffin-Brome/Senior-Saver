@@ -25,7 +25,8 @@ import io.radar.sdk.model.RadarEvent;
 import io.radar.sdk.model.RadarUser;
 
 public class MainActivity extends AppCompatActivity {
-private static final int ACCESS_FINE_LOCATION_CODE = 100;
+    private static final int ACCESS_FINE_LOCATION_CODE = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,10 +42,9 @@ private static final int ACCESS_FINE_LOCATION_CODE = 100;
         Radar.trackOnce(new Radar.RadarCallback() {
             @Override
             public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
-                
+
             }
         });
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -91,6 +91,9 @@ private static final int ACCESS_FINE_LOCATION_CODE = 100;
 
         }*/
         ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, requestCode);
+
+    }
+    public void sendSms(){
 
     }
 
