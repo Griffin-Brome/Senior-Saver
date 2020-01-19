@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.w3c.dom.Text;
 
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDateTime;
@@ -105,14 +106,14 @@ private WebView myWebView;
                 //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
                 String data = "www.seniorsaver.tech/" + userId + "%" + location.getLongitude() +"%" + location.getLatitude() + "%" + LocalDateTime.now();
                 view.setText(data);
-                /*try{
-                    URL url = new URL("http://www.google.com/");
-                    URLConnection yc = url.openConnection();
-                    yc.connect();
+                try{
+                    HttpURLConnection urlConnection = null;
+                    URL url = new URL("http://10.0.2.2:5000/help/");
+                    urlConnection = (HttpURLConnection) url.openConnection();
                     }catch(Exception e){
-                }*/
-                myWebView = (WebView) findViewById(R.id.webView);
-                myWebView.loadUrl("http://10.0.2.2:5000/help");
+                }
+                //myWebView = (WebView) findViewById(R.id.webView);
+                //myWebView.loadUrl("http://10.0.2.2:5000/help");
 
 
             }
