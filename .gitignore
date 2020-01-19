@@ -16,7 +16,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+lib/# Download the Python helper library from twilio.com/docs/python/install
 lib64/
 parts/
 sdist/
@@ -127,4 +127,14 @@ dmypy.json
 
 twilio.env
 
-.vscode/
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
