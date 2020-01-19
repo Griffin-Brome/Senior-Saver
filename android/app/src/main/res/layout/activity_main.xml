@@ -21,7 +21,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Senior Saver"
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="472dp" />
 
@@ -31,6 +31,14 @@
         android:layout_height="0dp"
         tools:layout_editor_absoluteX="71dp"
         tools:layout_editor_absoluteY="426dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="64dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
