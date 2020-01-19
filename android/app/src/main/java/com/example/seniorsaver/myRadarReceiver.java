@@ -9,10 +9,14 @@ import io.radar.sdk.model.RadarUser;
 
 public class myRadarReceiver extends RadarReceiver {
 
+    //Plan is to geofence places such as nursing homes and frequently visited places.
+    //upon leaving or entering a fence a notification would be sent through twilio similar to
+    //how we did the help button
     @Override
     public void onEventsReceived(Context context, RadarEvent[] events, RadarUser user) {
-
-        user.getId();
+        for(RadarEvent event : events){
+            event.getType();
+        }
     }
 
     public void onError(Context context, Radar.RadarStatus status) {
