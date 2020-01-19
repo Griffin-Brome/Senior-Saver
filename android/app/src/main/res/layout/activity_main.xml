@@ -25,6 +25,13 @@
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="472dp" />
 
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
