@@ -126,7 +126,7 @@ private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457c
                     }
                 });
 
-                webView.loadUrl("http://10.0.2.2:5000/help");
+                webView.loadUrl(data);
 
 
 
