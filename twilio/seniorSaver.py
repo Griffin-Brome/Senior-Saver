@@ -1,6 +1,6 @@
 import pymongo
 from pymongo import MongoClient
-
+import dns
 class seniorSaver:
     """Application for querying an order database"""
 
@@ -28,12 +28,12 @@ class seniorSaver:
         print('Contacts inserted')
         Person = self.db['Person']
         Person.delete_many({})
-        p1 = {'_id': 'User0001', 'pName': 'Bertha', 'gender': 'Female', 'dob': '1920-02-21',
+        p1 = {'_id': 'user0001', 'pName': 'Bertha', 'gender': 'Female', 'dob': '1920-02-21',
               'health': 'Type 2 Diabetic'}
-        p2 = {'_id': 'User0002', 'pName': 'Donald', 'gender': 'Male', 'dob': '1922-11-22', 'health': 'Hearing Loss'}
-        p3 = {'_id': 'User0003', 'pName': 'Doreen', 'gender': 'Female', 'dob': '1926-03-09',
+        p2 = {'_id': 'user0002', 'pName': 'Donald', 'gender': 'Male', 'dob': '1922-11-22', 'health': 'Hearing Loss'}
+        p3 = {'_id': 'user0003', 'pName': 'Doreen', 'gender': 'Female', 'dob': '1926-03-09',
               'health': 'Broken Hip (Wheelchair)'}
-        p4 = {'_id': 'User0004', 'pName': 'Mortimer', 'gender': 'Male', 'dob': '1928-09-30',
+        p4 = {'_id': 'user0004', 'pName': 'Mortimer', 'gender': 'Male', 'dob': '1928-09-30',
               'health': 'Partially Blind'}
         Person.insert_many([p1, p2, p3, p4])
         print('People inserted')
