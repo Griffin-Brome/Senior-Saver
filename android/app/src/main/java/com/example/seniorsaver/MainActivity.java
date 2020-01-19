@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.w3c.dom.Text;
 
-import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDateTime;
@@ -100,7 +99,6 @@ private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457c
             @Override
             public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
             //RadarEvent event = new RadarEvent();
-                //myEvent event = new myEvent(location.getLongitude(), location.getLatitude());
                 TextView view = (TextView) findViewById(R.id.textView3);
                 //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
                 String data = "www.seniorsaver.tech/" + userId + "%" + location.getLongitude() +"%" + location.getLatitude() + "%" + LocalDateTime.now();
