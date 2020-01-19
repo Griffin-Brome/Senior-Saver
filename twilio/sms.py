@@ -6,16 +6,13 @@ from seniorSaver import seniorSaver
 
 from twilio.rest import Client
 
-if __name__ == "__main__":
-    send_sms()
 
 def send_sms(userId, lat, lon):
 
     # Your Account Sid and Auth Token from twilio.com/user/account
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    account_sid = 'ACa6bf54e3cc0212c2f832a20c6f33bf67'
+    auth_token = '904acaf76e458ea75cc1bcaeb68c56eb'
     client = Client(account_sid, auth_token)
-
 
     # Get details on user and emergency contact info
     self = seniorSaver()
@@ -61,3 +58,6 @@ def send_sms(userId, lat, lon):
             body=message
         )
     return
+
+if __name__ == "__main__":
+    send_sms()

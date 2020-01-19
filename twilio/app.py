@@ -7,6 +7,8 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 from seniorSaver import seniorSaver 
 from datetime import datetime
+from twilio.rest import Client
+
 
 app = Flask(__name__)
 self = seniorSaver()
