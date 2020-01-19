@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -38,7 +39,6 @@ import io.radar.sdk.model.RadarUser;
 public class MainActivity extends AppCompatActivity {
 private static final String userId = "AppTest";
 private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457cdf475503827f9ec36c";
-private WebView myWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +106,28 @@ private WebView myWebView;
                 //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
                 String data = "www.seniorsaver.tech/" + userId + "%" + location.getLongitude() +"%" + location.getLatitude() + "%" + LocalDateTime.now();
                 view.setText(data);
-                try{
+                /*try{
                     HttpURLConnection urlConnection = null;
                     URL url = new URL("http://10.0.2.2:5000/help/");
                     urlConnection = (HttpURLConnection) url.openConnection();
                     }catch(Exception e){
-                }
-                //myWebView = (WebView) findViewById(R.id.webView);
-                //myWebView.loadUrl("http://10.0.2.2:5000/help");
+                }*/
+
+                /*WebView myWebView = (WebView) findViewById(R.id.webView);
+                myWebView.getSettings().setJavaScriptEnabled(true);
+                myWebView.loadUrl("www.google.ca");*/
+                WebView webView = (WebView)findViewById(R.id.webView);
+
+                webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.loadUrl(url);
+                        return false;
+                    }
+                });
+
+                webView.loadUrl("10.0.2.2:5000/help");
+
 
 
             }
