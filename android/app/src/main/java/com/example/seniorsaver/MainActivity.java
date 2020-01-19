@@ -1,6 +1,7 @@
 package com.example.seniorsaver;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,85 +17,106 @@ import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Text;
+
+import java.net.URL;
+import java.net.URLConnection;
+import java.time.LocalDateTime;
 
 import io.radar.sdk.Radar;
 import io.radar.sdk.model.RadarEvent;
 import io.radar.sdk.model.RadarUser;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int ACCESS_FINE_LOCATION_CODE = 100;
+private static final String userId = "AppTest";
+private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457cdf475503827f9ec36c";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Initialising RADAR
-        String publishableKey = "prj_test_pk_9a3d304c66917becaf457cdf475503827f9ec36c";
-        Radar.initialize(publishableKey);
-        String userId = "AppTest";
-        Radar.setUserId(userId);
-
-        //Requesting Permissions
-        checkpermissions("Manifest.permission.ACCESS_FINE_LOCATION",ACCESS_FINE_LOCATION_CODE);
-
-        Radar.trackOnce(new Radar.RadarCallback() {
-            @Override
-            public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
-
-            }
-        });
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        //Initialise RADAR
+        initialise();
+
+        super.onCreate(savedInstanceState);
+
+        Button helpBtn = (Button) findViewById(R.id.gpsBtn);
+        helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                help();
             }
         });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
+    //Sets key and userId, checks permissions
+    public void initialise(){
+        Radar.initialize(publishableKey);
+        Radar.setUserId(userId);
+        permissions();
+        String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
+        if (!hasPermissions(this, permissions)) {
+            ActivityCompat.requestPermissions(this, permissions, 1);
+        }
+
+    }
+
+    public void permissions(){
+        String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
+        if (!hasPermissions(this, permissions)) {
+            ActivityCompat.requestPermissions(this, permissions, 2);
+        }
+
+    }
+
+    //Used to check permissions
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    public void locate() {
+        Radar.trackOnce(new Radar.RadarCallback() {
+            @Override
+            public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
+            //RadarEvent event = new RadarEvent();
+                TextView view = (TextView) findViewById(R.id.textView3);
+                //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
+                String data = "www.seniorsaver.tech/" + userId + "%" + location.getLongitude() +"%" + location.getLatitude() + "%" + LocalDateTime.now();
+                view.setText(data);
+                try{
+                    URL url = new URL("http://www.google.com/");
+                    URLConnection yc = url.openConnection();
+                    yc.connect();
+                    }catch(Exception e){
+                }
 
-        return super.onOptionsItemSelected(item);
-    }
-    public void checkpermissions(String permission, int requestCode){
-        /*if(ContextCompat.checkSelfPermission(MainActivity.this,
-                permission)
-                == PackageManager.PERMISSION_DENIED)
-        {
-            // Permission is not granted
-            ActivityCompat.requestPermissions(MainActivity.this, new String[] { permission }, requestCode);
 
-        }*/
-        ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, requestCode);
-
-    }
-    public void sendSms(){
-
+            }
+        });
     }
 
+
+    public void help(){
+        locate();
+    }
 }
