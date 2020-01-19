@@ -26,6 +26,8 @@ import io.radar.sdk.model.RadarUser;
 
 public class MainActivity extends AppCompatActivity {
 private static final int ACCESS_FINE_LOCATION_CODE = 100;
+private static final int ACCESS_BACKGROUND_LOCATION = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,28 +38,15 @@ private static final int ACCESS_FINE_LOCATION_CODE = 100;
         Radar.setUserId(userId);
 
         //Requesting Permissions
-        checkpermissions("Manifest.permission.ACCESS_FINE_LOCATION",ACCESS_FINE_LOCATION_CODE);
+        checkpermissions(Manifest.permission.ACCESS_FINE_LOCATION,ACCESS_FINE_LOCATION_CODE);
+        checkpermissions(Manifest.permission.ACCESS_BACKGROUND_LOCATION,ACCESS_BACKGROUND_LOCATION);
 
-        Radar.trackOnce(new Radar.RadarCallback() {
-            @Override
-            public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
-                
-            }
-        });
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -81,17 +70,23 @@ private static final int ACCESS_FINE_LOCATION_CODE = 100;
 
         return super.onOptionsItemSelected(item);
     }
-    public void checkpermissions(String permission, int requestCode){
-        /*if(ContextCompat.checkSelfPermission(MainActivity.this,
+    public void checkpermissions(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
                 permission)
-                == PackageManager.PERMISSION_DENIED)
-        {
-            // Permission is not granted
-            ActivityCompat.requestPermissions(MainActivity.this, new String[] { permission }, requestCode);
+                == PackageManager.PERMISSION_DENIED) {
+            //Permission is not granted
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, requestCode);
 
-        }*/
-        ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, requestCode);
+        }
+        //ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, requestCode);
 
     }
+    public void locate() {
+        Radar.trackOnce(new Radar.RadarCallback() {
+            @Override
+            public void onComplete(@NotNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
 
+            }
+        });
+    }
 }
