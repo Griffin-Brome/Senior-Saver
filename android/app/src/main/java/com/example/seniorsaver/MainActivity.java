@@ -104,7 +104,7 @@ private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457c
             //RadarEvent event = new RadarEvent();
                 TextView view = (TextView) findViewById(R.id.textView3);
                 //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
-                String data = "www.seniorsaver.tech/" + userId + "%" + location.getLongitude() +"%" + location.getLatitude() + "%" + LocalDateTime.now();
+                String data = "10.0.2.2:5000/help?uid=" + userId + "&lon=" + location.getLongitude() +"&lat=" + location.getLatitude();
                 view.setText(data);
                 /*try{
                     HttpURLConnection urlConnection = null;
@@ -126,7 +126,7 @@ private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457c
                     }
                 });
 
-                webView.loadUrl("10.0.2.2:5000/help");
+                webView.loadUrl(data);
 
 
 
