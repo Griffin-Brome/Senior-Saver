@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request
 import sms
+import save_to_json
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
@@ -10,6 +14,7 @@ def help():
     lat = request.args.get("lat")
     user_id = request.args.get("uid")
     print (str(lon), str(lat), str(user_id))
+
     return "Message Sent"
 
 @app.route("/")

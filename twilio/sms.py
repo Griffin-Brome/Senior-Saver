@@ -25,7 +25,8 @@ def send_sms():
         user_location = contact['contact_location']
 
     # Make API calls here...
-        message = ("ATTENTION:" + str(emergency_contact_name) + ", " + str(user_name) 
+        message = ("ATTENTION:" + str(emergency_contact_name) + ", " 
+                    + str(user_name) 
                     + " NEEDS YOUR HELP AT LOCATION: " + str(user_location))
         client.messages.create(
             to=emergency_contact_phone,

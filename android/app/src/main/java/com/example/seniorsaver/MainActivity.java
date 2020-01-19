@@ -106,6 +106,7 @@ private static final String publishableKey = "prj_test_pk_9a3d304c66917becaf457c
                 //view.setText("" + location.getLongitude() + " " + location.getLatitude() + " " + userId + " " + LocalDateTime.now());
                 String data = "http://10.0.2.2:5000/help?uid=" + userId + "&lon=" + location.getLongitude() +"&lat=" + location.getLatitude();
                 view.setText("Help is on the way!");
+                view.setText(data);
                 /*try{
                     HttpURLConnection urlConnection = null;
                     URL url = new URL("http://10.0.2.2:5000/help/");
