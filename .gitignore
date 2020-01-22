@@ -138,3 +138,6 @@ twilio.env
 # Ignore all local history of files
 **/.history
 
+# intellij dotfiles
+.idea/*
+.idea/
